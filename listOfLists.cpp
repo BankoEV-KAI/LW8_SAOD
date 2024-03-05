@@ -148,7 +148,7 @@ void removeFromMainList(MainListNode*& mainList, int mainIndex) {
     }
 
     delete currentMain;
-    mainList->countLists--;
+    countMain--;
 }
 
 void addEmptySublistToMainList(MainListNode*& mainList, int mainIndex, int position) {
@@ -220,11 +220,11 @@ void addToSublistBefore(MainListNode* mainList, int mainIndex, int beforeValue, 
         prevSub = currentSub;
         currentSub = currentSub->next;
     }
-
+    
     if (currentSub == nullptr) {
         std::cout << "Ёлемент " << beforeValue << " не найден." << std::endl;
         return;
-    }
+    } 
 
     SublistNode* newNode = createSublistNode(value);
     newNode->next = currentSub;
@@ -261,4 +261,14 @@ void addToSublistAfter(MainListNode* mainList, int mainIndex, int afterValue, in
     SublistNode* newNode = createSublistNode(value);
     newNode->next = currentSub->next;
     currentSub->next = newNode;
+}
+
+void initExamles(MainListNode*& mainList) {
+    for (int i = 0; i < rand()%5 + 1; i++) {
+        addToEmptySublist(mainList, countMain, rand() % 100 + 1);
+        for (int j = 1; j < rand()%5 + 1; j++) {
+            addToSublist(mainList, i, rand() % 100 + 1);
+        }
+    }
+    printStructure(mainList);
 }

@@ -3,20 +3,18 @@
 #include <iostream>
 
 
+
+
 int main() {
+    srand(time(0));
+
     setlocale(LC_ALL, "Ru");
     MainListNode* mainList = createMainListNode();
 
     int operation{ 0 }, newData{ 0 }, findData{ 0 };
     int mainIndex, subIndex, position;
 
-    addToEmptySublist(mainList, 0, 1);
-    printStructure(mainList);
-    std::cout << countMain << std::endl;
-    addToSublistAfter(mainList, 0, 1, 12);
-    addToSublistBefore(mainList, 0, 1, 17);
-    std::cout << countMain << std::endl;
-    printStructure(mainList);
+    initExamles(mainList);
 
 
     while (true) {
@@ -95,6 +93,7 @@ int main() {
             std::cout << "Какой подчиненный список удалить >> ";
             enteringNumber(1, countMain, mainIndex);
             removeFromMainList(mainList, mainIndex-1);
+            printStructure(mainList);
             break;
         default:
             break;

@@ -25,6 +25,7 @@ bool findElement(MainListNode* mainList, int value, int& mainIndex, int& subInde
 
 void addToSublist(MainListNode* mainList, int mainIndex, int value);
 void addToSublistAfter(MainListNode* mainList, int mainIndex, int afterValue, int value);
+void initExamles(MainListNode*& mainList);
 void addToSublistBefore(MainListNode* mainList, int mainIndex, int beforeValue, int value);
 void removeFromSublist(MainListNode*& mainList, int mainIndex, int value);
 void addToEmptySublist(MainListNode* mainList, int mainIndex, int value);
