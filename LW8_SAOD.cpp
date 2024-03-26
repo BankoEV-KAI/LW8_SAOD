@@ -2,21 +2,57 @@
 #include "menu.h"
 #include <iostream>
 
-
+//список списков 
 
 
 int main() {
     srand(time(0));
 
     setlocale(LC_ALL, "Ru");
-    MainListNode* mainList = createMainListNode();
+
 
     int operation{ 0 }, newData{ 0 }, findData{ 0 };
     int mainIndex, subIndex, position;
 
-    initExamles(mainList);
+    
 
+    while (true)
+    {
+        printMenu(1);
+        enteringNumber(0, 7, operation);
+        switch (operation)
+        {
+        case 0:
+            return -1;
+        case 1:
+            printMainListWithSublists();
+            break;
+        case 2:
+            searchDialog();
+            break;
+        case 3:
+            addToMainList();
+            break; 
+        case 4:
+            addToSubList();
+            break;
+        case 5:
+            deleteFromMainList();
+            break;
+        case 6:
+            deleteFromSubList();
+            break;
+        case 7:
+            printMainListWithSublists();
+            break;
+        default:
+            break;
+        }
+    }
 
+    //initExamles(mainList);
+
+    /*
     while (true) {
         printMenu(1);
         enteringNumber(0, 6, operation);
@@ -35,7 +71,10 @@ int main() {
             break;
         case 3:
             std::cout << "До/после какого списка добавим >> ";
-            enteringNumber(1, countMain, mainIndex);
+            if (countMain == 0) { std::cout << "empty " << std::endl; mainIndex = 0; }
+            else {
+                enteringNumber(1, countMain, mainIndex);
+            }
             std::cout << "'-1' - до, '0' - в конец, '1' - после";
             enteringNumber(-1, 1, position);
             addEmptySublistToMainList(mainList, mainIndex-1, position);
@@ -54,6 +93,10 @@ int main() {
                 addToEmptySublist(mainList, countMain, newData);
                 break;
             case 2:
+                if (countMain == 0) {
+                    std::cout << "Главный список пуст" << std::endl;
+                    break;
+                }
                 std::cout << "В какой подчиненный список добавим >> ";
                 enteringNumber(1, countMain, mainIndex);
                 std::cout << "До какого элемента добавить >> ";
@@ -63,6 +106,10 @@ int main() {
                 addToSublistBefore(mainList, mainIndex-1, findData, newData);
                 break;
             case 3:
+                if (countMain == 0) {
+                    std::cout << "Главный список пуст" << std::endl;
+                    break;
+                }
                 std::cout << "В какой подчиненный список добавим >> ";
                 enteringNumber(1, countMain, mainIndex);
                 std::cout << "После какого элемента добавить >> ";
@@ -72,6 +119,10 @@ int main() {
                 addToSublistAfter(mainList, mainIndex-1, findData, newData);
                 break;
             case 4:
+                if (countMain == 0) {
+                    std::cout << "Главный список пуст" << std::endl;
+                    break;
+                }
                 std::cout << "В какой подчиненный список добавим >> ";
                 enteringNumber(1, countMain, mainIndex);
                 enteringNumber(1, 100, newData);
@@ -83,6 +134,10 @@ int main() {
             printStructure(mainList);
             break;
         case 5:
+            if (countMain == 0) {
+                std::cout << "Главный список пуст" << std::endl;
+                break;
+            }
             std::cout << "Из какого подчиненного списка удаление >> ";
             enteringNumber(1, countMain, mainIndex);
             enteringNumber(1, 100, findData);
@@ -90,6 +145,10 @@ int main() {
             printStructure(mainList);
             break;
         case 6:
+            if (countMain == 0) {
+                std::cout << "Главный список пуст" << std::endl;
+                break;
+            }
             std::cout << "Какой подчиненный список удалить >> ";
             enteringNumber(1, countMain, mainIndex);
             removeFromMainList(mainList, mainIndex-1);
@@ -99,6 +158,6 @@ int main() {
             break;
         }
     }
-
+    */
     return 0;
 }

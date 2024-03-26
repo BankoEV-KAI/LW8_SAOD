@@ -1,34 +1,49 @@
 
-struct SublistNode {
+struct SubListNode {
     int data;
-    SublistNode* next;
-
-    SublistNode(int value) : data(value), next(nullptr) {}
+    SubListNode* nextSub;
+    SubListNode* prevSub;
+    //SubListNode(int value) : data(value), nextSub(nullptr), prevSub(nullptr){}
 };
 
+//сделать двунаправленными (закольцевать) + бахнуть заголовки в мейн лист и саб лист 
 
 struct MainListNode {
-    SublistNode* sublist;
-    MainListNode* next;
-    int countLists{ 0 };
-    MainListNode() : sublist(nullptr), next(nullptr) {}
+    int keyMainList; //информационная часть главнного списка 
+    SubListNode* sublistHeader;
+    MainListNode* nextMain;
+    MainListNode* prevMain;
+    MainListNode() : sublistHeader(nullptr), nextMain(nullptr), prevMain(nullptr) {}
 };
 
+//тогда функций становится  по минимуму (добавление с передачей bef/aft, что определяет положение добавление + просмотр ключ : (саб лист) +
+//  удаление элмента по ключу из мейн листа (с удаление всего саб листа) + 
+// удаление элемента из саб листа по ключу) 
+
 extern int countMain;
+extern int countSubLists;
+extern MainListNode* MainHeader;
 
+void initMainList();
 
-MainListNode* createMainListNode();
-SublistNode* createSublistNode(int value);
+void addToMainList();
 
-void printStructure(MainListNode* mainList);
-bool findElement(MainListNode* mainList, int value, int& mainIndex, int& subIndex);
+bool searchInMain(int searchKey);
 
-void addToSublist(MainListNode* mainList, int mainIndex, int value);
-void addToSublistAfter(MainListNode* mainList, int mainIndex, int afterValue, int value);
-void initExamles(MainListNode*& mainList);
-void addToSublistBefore(MainListNode* mainList, int mainIndex, int beforeValue, int value);
-void removeFromSublist(MainListNode*& mainList, int mainIndex, int value);
-void addToEmptySublist(MainListNode* mainList, int mainIndex, int value);
+void deleteFromMainList();
 
-void removeFromMainList(MainListNode*& mainList, int mainIndex);
-void addEmptySublistToMainList(MainListNode*& mainList, int mainIndex, int position);
+void searchInMainDialog(int searchKey);
+
+void printMainListWithSublists();
+
+void addToSubList();
+
+bool searchInSubList(int searchSubKey, int keyInMain);
+
+void deleteFromSubList();
+
+void searchInSubListDialog();
+
+void searchInAllStructure();
+
+void searchDialog();
